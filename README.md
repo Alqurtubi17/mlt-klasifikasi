@@ -109,28 +109,28 @@ Hasil di atas menunjukkan bahwa tidak terdapat missing values dalam dataset ini.
 
 Setelah proses data understanding selesai dilakukan, langkah selanjutnya adalah eksplorasi data atau Exploratory Data Analysis (EDA). Tahapan ini bertujuan untuk memahami pola, hubungan, serta karakteristik dari setiap fitur dalam dataset, baik dari sisi distribusi masing-masing variabel (univariat) maupun hubungan antar variabel (multivariat). Dengan melakukan EDA, kita dapat mengidentifikasi potensi outlier, ketidakseimbangan kelas, dan variabel-variabel yang berpengaruh terhadap target prediksi, yaitu diabetes.
 
-![Gambar 1. Sebaran Diabetes](image.png)
+![Gambar 1. Sebaran Diabetes](https://github.com/Alqurtubi17/mlt-klasifikasi/blob/master/image.png?raw=true)
 Distribusi target diabetes sangat tidak seimbang, dengan mayoritas individu dikategorikan sebagai non-diabetes (0) dan hanya sebagian kecil yang didiagnosis diabetes (1). Hal ini menunjukkan adanya potensi masalah class imbalance yang perlu ditangani saat proses pemodelan, misalnya dengan teknik SMOTETomek untuk penyeimbangan data.
 
-![Gambar 2. Distribusi Variabel Numerik](image-2.png)
+![Gambar 2. Distribusi Variabel Numerik](https://github.com/Alqurtubi17/mlt-klasifikasi/blob/master/image-2.png?raw=true)
 Analisis univariat terhadap fitur numerik dalam dataset dilakukan untuk memahami distribusi, rentang, dan kecenderungan nilai dari setiap variabel. Distribusi kadar glukosa, misalnya, menunjukkan penyebaran yang luas dengan puncak frekuensi yang berada pada rentang antara 90 hingga 150 mg/dL. Hal ini mengindikasikan bahwa sebagian besar individu dalam populasi cenderung memiliki kadar glukosa dalam kisaran normoglikemia hingga ambang hiperglikemia. Variabel indeks massa tubuh (BMI) memperlihatkan kecenderungan distribusi yang miring ke kanan, dengan mayoritas individu berada pada rentang 25–35 kg/m², yang menunjukkan bahwa populasi memiliki dominasi berat badan berlebih hingga obesitas. Usia memiliki distribusi unimodal dengan penyebaran dari usia muda hingga lanjut, dan konsentrasi frekuensi berada di sekitar rentang 40–60 tahun. Tekanan darah juga menunjukkan distribusi normal yang agak menyebar, dengan nilai yang banyak muncul pada kisaran 70–85 mmHg (diasumsikan sebagai tekanan diastolik atau rerata tekanan darah).
 
-![Gambar 3. Sebaran Variabel Kategorik](image-3.png)
+![Gambar 3. Sebaran Variabel Kategorik](https://github.com/Alqurtubi17/mlt-klasifikasi/blob/master/image-3.png?raw=true)
 Analisis univariat fitur kategorikal bertujuan untuk memahami distribusi proporsi setiap kategori dalam populasi tanpa mengaitkannya dengan variabel target. Pada fitur jenis kelamin (gender), distribusi terbagi ke dalam tiga kategori: Female, Male, dan Other. Mayoritas responden adalah Female dan Male, dengan jumlah relatif seimbang, sementara kategori Other memiliki proporsi yang sangat kecil, mencerminkan keberadaan individu non-biner atau data yang tidak diklasifikasikan secara tradisional. Fitur riwayat merokok (smoking_history) memiliki enam kategori: never, no info, current, former, ever, dan not current. Kategori never mendominasi distribusi, menunjukkan sebagian besar responden tidak pernah merokok. Diikuti oleh kategori former dan ever, yang menunjukkan riwayat merokok di masa lalu, serta current, yang mewakili perokok aktif. not current tampaknya digunakan untuk mengklasifikasikan individu yang saat ini tidak merokok, meskipun pernah, sementara no info menunjukkan data tidak tersedia atau tidak dijawab. Keberadaan kategori seperti no info penting untuk dicermati karena dapat merepresentasikan ketidaklengkapan data. Fitur hipertensi (hypertension) hanya memiliki dua kategori: yes dan no, dengan mayoritas responden tidak memiliki riwayat hipertensi (no). Sementara itu, fitur penyakit jantung (heart_disease) juga terdiri dari dua kategori: yes dan no, dan secara umum menunjukkan proporsi yang lebih besar pada kategori no, mengindikasikan bahwa sebagian besar individu dalam populasi ini tidak memiliki riwayat penyakit jantung.
 
-![Gambar 4. Korelasi](image-4.png)
+![Gambar 4. Korelasi](https://github.com/Alqurtubi17/mlt-klasifikasi/blob/master/image-4.png?raw=true)
 Berdasarkan heatmap korelasi Pearson, variabel HbA1c dan glukosa darah menunjukkan korelasi tertinggi terhadap status diabetes, masing-masing sekitar +0,42 dan +0,4, menjadikannya indikator klinis utama dalam prediksi diabetes. Indeks massa tubuh (BMI) memiliki korelasi sedang, sekitar +0,21, diikuti oleh hipertensi dan usia, masing-masing sekitar +0,2 dan +0,26. Korelasi dengan penyakit jantung rendah, sekitar 0,17. Korelasi antar variabel input tidak menunjukkan nilai ekstrem, sehingga tidak terdapat indikasi multikolinearitas yang signifikan dalam data.
 
-![Gambar 5. Rokok - Diabetes](image-5.png)
+![Gambar 5. Rokok - Diabetes](https://github.com/Alqurtubi17/mlt-klasifikasi/blob/master/image-5.png?raw=true)
 Dari grafik, tampak bahwa proporsi individu dengan diabetes lebih tinggi pada kelompok perokok aktif dibandingkan dengan bukan perokok. Hal ini mengindikasikan adanya potensi asosiasi positif antara kebiasaan merokok dan kejadian diabetes. Merokok dapat memicu resistensi insulin melalui stres oksidatif dan peradangan kronis yang mengganggu metabolisme glukosa. Oleh karena itu, merokok dapat dianggap sebagai faktor risiko tambahan yang berkontribusi terhadap munculnya diabetes tipe 2.
 
-![Gambar 6. Gender - Diabetes](image-6.png)
+![Gambar 6. Gender - Diabetes](https://github.com/Alqurtubi17/mlt-klasifikasi/blob/master/image-6.png?raw=true)
 Dari visualisasi yang disajikan, tidak terlihat perbedaan yang mencolok antara laki-laki dan perempuan dalam hal prevalensi diabetes. Ini menunjukkan bahwa jenis kelamin mungkin bukan faktor determinan utama dalam model prediksi diabetes pada dataset ini. Namun, dari perspektif epidemiologis, perbedaan hormonal dan gaya hidup antara laki-laki dan perempuan tetap dapat berpengaruh secara tidak langsung terhadap sensitivitas insulin dan regulasi glukosa darah, sehingga tetap relevan sebagai variabel demografis.
 
-![Gambar 7. BMI - Diabetes](image-7.png)
+![Gambar 7. BMI - Diabetes](https://github.com/Alqurtubi17/mlt-klasifikasi/blob/master/image-7.png?raw=true)
 Terlihat bahwa individu dengan nilai BMI tinggi memiliki kecenderungan lebih besar untuk menderita diabetes. Hubungan ini konsisten dengan temuan dalam literatur medis, yang menyatakan bahwa obesitas sentral merupakan salah satu kontributor utama resistensi insulin. Akumulasi jaringan adiposa, terutama lemak visceral, menghasilkan sitokin proinflamasi yang mengganggu homeostasis glukosa.
 
-![Gambar 8. Usia - Diabetes](image-8.png)
+![Gambar 8. Usia - Diabetes](https://github.com/Alqurtubi17/mlt-klasifikasi/blob/master/image-8.png?raw=true)
 Tampak bahwa prevalensi diabetes meningkat secara progresif seiring bertambahnya usia. Hal ini sejalan dengan teori fisiologis yang menyatakan bahwa sensitivitas insulin menurun dengan bertambahnya usia akibat perubahan komposisi tubuh, penurunan massa otot, serta peningkatan stres metabolik. Secara statistik, usia menjadi salah satu prediktor penting dalam model klasifikasi diabetes, karena mencerminkan akumulasi risiko sepanjang hidup individu.
 
 Sebelum masuk ke tahap modeling, dilakukan analisis statistik deskriptif terhadap variabel numerik dalam dataset untuk memahami distribusi data secara umum. Statistik ini mencakup jumlah data, nilai rata-rata, standar deviasi, nilai minimum dan maksimum, serta kuartil pertama (Q1), median (Q2), dan kuartil ketiga (Q3).
@@ -205,10 +205,48 @@ Distribusi target diabetes yang tidak seimbang diatasi menggunakan teknik kombin
 
 ### **Modelling dan Hyperparameter Tuning**
 ---
-Dalam tahap ini, tiga algoritma machine learning digunakan untuk membangun model prediksi diabetes, yaitu Random Forest, XGBoost, dan Logistic Regression. Masing-masing model dioptimalkan dengan hyperparameter tuning menggunakan GridSearchCV untuk mendapatkan kombinasi parameter terbaik. Evaluasi dilakukan berdasarkan metrik klasifikasi: Accuracy, Precision, Recall, dan F1 Score.
+Setelah melalui proses pembersihan data, pengkodean fitur, dan penskalaan nilai-nilai numerik, data kemudian dibagi menjadi training set dan testing set dengan rasio 80:20 untuk memastikan evaluasi model yang adil. Namun, karena terdapat ketidakseimbangan kelas pada target (diabetes), dilakukan penyeimbangan data menggunakan SMOTETomek, yaitu kombinasi teknik oversampling pada kelas minoritas dan undersampling pada kelas mayoritas secara bersamaan, guna memperbaiki distribusi kelas dan meningkatkan performa model.
+
+Selanjutnya, proses pemodelan dilakukan dengan tiga algoritma machine learning yang berbeda, yaitu Random Forest, XGBoost, dan Logistic Regression. Ketiga algoritma ini dipilih karena memiliki keunggulan masing-masing dalam hal akurasi, interpretabilitas, dan kemampuan menangkap hubungan non-linear.
+
+Untuk memastikan setiap model bekerja secara optimal, dilakukan hyperparameter tuning menggunakan metode GridSearchCV, yaitu pencarian kombinasi parameter terbaik berdasarkan validasi silang (cross-validation) 3-fold. Hal ini bertujuan untuk mengurangi risiko overfitting dan memperoleh model dengan kinerja terbaik pada data yang belum pernah dilihat sebelumnya.
 
 1. Logistic Regression (LR)
     
+    Logistic Regression adalah model linier untuk klasifikasi yang memprediksi probabilitas suatu data termasuk dalam kelas tertentu (biasanya kelas 1).
+
+    Model menghitung kombinasi linier dari fitur:
+
+    $$ z = \beta_0 + \beta_1x_1 + \beta_2x_2 + ... + \beta_nx_n $$
+
+    Nilai ini kemudian dilewatkan ke fungsi sigmoid untuk menghasilkan probabilitas antara 0 dan 1:
+
+    $$ P(y=1 \mid x) = \frac{1}{1 + e^{-x}}$$
+
+    Jika probabilitas > 0.5, maka prediksi = 1, sebaliknya prediksi = 0.
+
+    Logistic Regression di proyek ini menggunakan dua parameter utama dalam proses tuning, yaitu C dan solver. Berikut penjelasannya:
+
+    ```python
+    # Logistic Regression
+    lr_params = {
+        'C': [0.1, 1.0, 10.0],
+        'solver': ['lbfgs', 'liblinear']
+    }
+    lr = GridSearchCV(LogisticRegression(max_iter=1000, random_state=42, class_weight='balanced'), lr_params, cv=3, n_jobs=-1)
+    ```
+    - C (Inverse of Regularization Strength)
+        
+        Parameter ini mengontrol kekuatan regularisasi. Nilai C yang lebih kecil akan memberikan regularisasi yang lebih kuat, artinya model menjadi lebih sederhana dan cenderung menghindari overfitting. Sebaliknya, nilai C yang lebih besar membuat model lebih fleksibel, namun lebih berisiko overfit jika data terlalu kompleks. Nilai yang diuji: 0.1, 1.0, dan 10.0.
+
+    - solver (Optimization Algorithm)
+        
+        Solver menentukan metode optimisasi yang digunakan untuk mencari parameter terbaik.
+        - 'liblinear': Cocok untuk dataset kecil sampai menengah dan mendukung regularisasi L1 dan L2.
+        -  'lbfgs': Lebih efisien untuk dataset besar dan digunakan untuk regularisasi L2.
+    
+    GridSearch akan memilih parameter terbaik berdasarkan hasil validasi silang 3-fold.
+
     Kelebihan:
     - Sederhana dan cepat dalam pelatihan serta interpretasi.
     - Cocok untuk baseline model dan data yang relatif linear.
@@ -222,6 +260,62 @@ Dalam tahap ini, tiga algoritma machine learning digunakan untuk membangun model
     - Dilakukan hyperparameter tuning seperti pemilihan solver (liblinear, lbfgs) dan regularisasi (C).
 
 2. Random Forest (RF)
+
+    Random Forest adalah ensemble dari banyak pohon keputusan (decision trees) yang digabungkan untuk meningkatkan akurasi dan mengurangi overfitting.
+
+    Langkah-langkah utama:
+
+    1. Bangun banyak decision tree (misal 100–150).
+
+    2. Untuk setiap pohon:
+
+        - Gunakan subset data (bootstrap sample).
+        - Di setiap split, pilih subset acak dari fitur.
+
+    3. Setiap pohon menghasilkan prediksi.
+
+    4. Hasil akhir diambil dari mayoritas suara (voting) dari seluruh pohon.
+
+    Tidak ada satu rumus eksplisit, tapi setiap pohon mengikuti pembentukan split berdasarkan Information Gain / Gini Impurity, misalnya:
+
+    $$ \text{Gini}(t) = 1 - \sum_{i=1}^{C} {p_i^2} $$
+
+    Di mana $p_i$ adalah proporsi kelas ke-i pada node t.
+
+    Rumus Random Forest untuk klasifikasi:
+
+    Misalkan $T_1(x),T_2(x),\ldots, T_k(x)$ adalah prediksi dari masing-masing pohon, maka prediksi akhir $\hat{y}$ adalah
+
+    $$\hat{y} = \text{mode} \left( T_1(x), T_2(x), \ldots, T_K(x) \right)$$
+
+    Random Forest adalah algoritma ensemble yang menggunakan banyak pohon keputusan. Parameter tuning dilakukan terhadap n_estimators, max_depth, dan min_samples_split.
+
+    ```python
+    # Random Forest
+    rf_params = {
+        'n_estimators': [100, 150],
+        'max_depth': [None, 10],
+        'min_samples_split': [2, 5]
+    }
+    rf = GridSearchCV(RandomForestClassifier(random_state=42, class_weight='balanced'), rf_params, cv=3, n_jobs=-1)
+    ```
+    - n_estimators (Number of Trees)
+    
+        Jumlah pohon dalam hutan. Semakin banyak pohon, hasil prediksi cenderung lebih stabil dan akurat, tetapi waktu pelatihan juga meningkat. Nilai yang diuji: 100 dan 150.
+
+    - max_depth (Maximum Depth of Each Tree)
+        
+        Mengontrol kedalaman maksimum dari setiap pohon.
+        - Jika diatur ke None, maka pohon akan terus tumbuh hingga semua daun adalah pure (berisi satu kelas saja), yang bisa menyebabkan overfitting.
+        - Dengan membatasi kedalaman (misalnya 10), model jadi lebih sederhana dan cenderung lebih general.
+
+    - min_samples_split (Minimum Samples to Split a Node)
+
+        Menentukan jumlah minimum sampel yang diperlukan untuk membagi node internal.
+        - Nilai kecil (misalnya 2) memungkinkan pembagian yang lebih sering dan pohon lebih kompleks.
+        - Nilai lebih besar (misalnya 5) mengurangi kompleksitas model dan membantu menghindari overfitting.
+
+    GridSearch akan memilih parameter terbaik berdasarkan hasil validasi silang 3-fold.
 
     Kelebihan:
     - Mampu menangkap hubungan non-linear dan interaksi antar fitur.
@@ -237,6 +331,51 @@ Dalam tahap ini, tiga algoritma machine learning digunakan untuk membangun model
 
 3. XGBoost (Extreme Gradient Boosting)
 
+    XGBoost adalah algoritma boosting berbasis pohon yang membangun model secara bertahap, di mana setiap pohon baru dibuat untuk memperbaiki kesalahan dari pohon-pohon sebelumnya. Model dioptimalkan dengan fungsi objektif yang terdiri dari fungsi loss dan regularisasi untuk menghindari overfitting. Cara kerja dari XGBoost adalah sebagai berikut:
+
+    1. Model awal memulai dari prediksi konstan (misal rata-rata).
+    2. Pohon baru ditambahkan untuk meminimalkan error sisa dari model sebelumnya.
+    3. Proses ini dilakukan secara iteratif sampai jumlah pohon tertentu tercapai atau error tidak berkurang lagi secara signifikan.
+    4. XGBoost menggunakan regularisasi (L1/L2) untuk mengendalikan kompleksitas pohon.
+
+    Fungsi Objektif XGBoost:
+    $$\mathcal{L}(\phi) = \sum_{i=1}^{n} l\left(y_i, \hat{y}_i^{(t)}\right) + \sum_{k=1}^{t} \Omega(f_k)$$
+
+    dimana:
+    - $l\left(y_i, \hat{y}_i^{(t)}\right)$: fungsi loss (contoh: log loss untuk klasifikasi).
+    - $\Omega(f) = \gamma T + \frac{1}{2} \lambda \sum_{j=1}^{T} w_j^2$:  fungsi regularisasi untuk menghindari overfitting, di mana $T$ adalah jumlah daun dalam pohon dan $w_j$ adalah skor setiap daun.
+    - $\hat{y}_i^{(t)} = \sum_{k=1}^{t} f_k(x_i)$: prediksi kumulatif hingga pohon ke-$t$.
+
+    XGBoost merupakan algoritma boosting yang sangat powerful dan fleksibel. Parameter tuning dilakukan terhadap n_estimators, max_depth, dan learning_rate.
+
+    ```python
+    # XGBoost
+    xgb_params = {
+        'n_estimators': [100, 150],
+        'max_depth': [3, 5],
+        'learning_rate': [0.1, 0.3]
+    }
+    xgb = GridSearchCV(XGBClassifier(use_label_encoder=False, eval_metric='logloss', random_state=42), xgb_params, cv=3, n_jobs=-1)
+    ```
+
+    - n_estimators (Number of Boosting Rounds)
+        
+        Menentukan jumlah pohon yang akan dibangun secara berurutan. Sama seperti Random Forest, semakin banyak pohon, potensi akurasi meningkat, tetapi juga berisiko overfit jika tidak dikontrol.
+
+    - max_depth (Depth of Each Tree)
+        
+        Mengatur kedalaman maksimal dari pohon.
+        - Nilai kecil seperti 3 membuat model lebih sederhana dan general.
+        - Nilai yang lebih besar seperti 5 memungkinkan model mempelajari hubungan lebih kompleks, tetapi berpotensi overfitting jika tidak diimbangi dengan regulasi lain.
+
+    - learning_rate (Step Size Shrinkage / η)
+        
+        Parameter penting dalam boosting yang menentukan seberapa besar kontribusi setiap pohon terhadap prediksi akhir.
+        - Nilai yang kecil (misalnya 0.1) membuat model belajar lebih perlahan tapi hasil akhirnya lebih stabil.
+        - Nilai yang lebih besar (0.3) membuat model belajar lebih cepat, tetapi jika terlalu besar bisa melewatkan solusi optimal.
+
+    GridSearch akan memilih parameter terbaik berdasarkan hasil validasi silang 3-fold.
+
     Kelebihan:
     - Sangat powerful dalam menangani dataset besar dan kompleks.
     - Memiliki fitur regulasi bawaan yang membantu menghindari overfitting.
@@ -248,60 +387,6 @@ Dalam tahap ini, tiga algoritma machine learning digunakan untuk membangun model
 
     Improvement:
     - Tuning dilakukan terhadap learning_rate, max_depth, n_estimators, dan subsample.
-
-Setelah data dibersihkan, dikodekan, dan diskalakan, dilakukan pembagian data menjadi training dan testing set dengan rasio 80:20. Untuk mengatasi ketidakseimbangan kelas target (diabetes), digunakan metode SMOTETomek untuk melakukan oversampling pada kelas minoritas dan undersampling pada kelas mayoritas secara bersamaan. 
-
-Setelah balancing, dilakukan hyperparameter tuning menggunakan GridSearchCV untuk setiap model. GridSearch digunakan untuk mencari kombinasi parameter terbaik berdasarkan validasi silang 3-fold.
-
-Parameter yang digunakan:
-- Random Forest
-    - n_estimators: [100, 150]
-    - max_depth: [None, 10]
-    - min_samples_split: [2, 5]
-
-```python
-# Random Forest
-rf_params = {
-    'n_estimators': [100, 150],
-    'max_depth': [None, 10],
-    'min_samples_split': [2, 5]
-}
-rf = GridSearchCV(RandomForestClassifier(random_state=42, class_weight='balanced'), rf_params, cv=3, n_jobs=-1)
-rf.fit(X_train_resampled, y_train_resampled)
-y_pred_rf = rf.predict(X_test_scaled)
-```
-
-- XGBoost
-    - n_estimators: [100, 150]
-    - max_depth: [3, 5]
-    - learning_rate: [0.1, 0.3]
-
-```python
-# XGBoost
-xgb_params = {
-    'n_estimators': [100, 150],
-    'max_depth': [3, 5],
-    'learning_rate': [0.1, 0.3]
-}
-xgb = GridSearchCV(XGBClassifier(use_label_encoder=False, eval_metric='logloss', random_state=42), xgb_params, cv=3, n_jobs=-1)
-xgb.fit(X_train_resampled, y_train_resampled)
-y_pred_xgb = xgb.predict(X_test_scaled)
-```
-
-- Logistic Regression
-    - C: [0.1, 1.0, 10.0]
-    - solver: ['lbfgs', 'liblinear']
-
-```python
-# Logistic Regression
-lr_params = {
-    'C': [0.1, 1.0, 10.0],
-    'solver': ['lbfgs', 'liblinear']
-}
-lr = GridSearchCV(LogisticRegression(max_iter=1000, random_state=42, class_weight='balanced'), lr_params, cv=3, n_jobs=-1)
-lr.fit(X_train_resampled, y_train_resampled)
-y_pred_lr = lr.predict(X_test_scaled)
-```
 
 Setiap model dilatih dengan data training yang telah dibalancing dan distandarisasi. Evaluasi awal dilakukan dengan data testing untuk mendapatkan nilai Accuracy, Precision, Recall, dan F1 Score.
 
@@ -382,7 +467,7 @@ Setelah dilakukan pelatihan dan tuning, diperoleh hasil sebagai berikut:
 
 Dari tabel di atas, dapat disimpulkan bahwa XGBoost merupakan model dengan performa terbaik karena memberikan nilai F1 score tertinggi (0.7885), yang menandakan keseimbangan yang baik antara precision dan recall. Model ini juga memiliki precision tertinggi (0.8896), yang berarti model sangat jarang melakukan false positive, serta tetap mampu menjaga recall yang cukup baik Logistic Regression memiliki recall yang tinggi, namun precision-nya sangat rendah sehingga kurang ideal untuk digunakan sebagai model utama. Sementara Random Forest memberikan hasil yang seimbang, namun masih berada di bawah XGBoost dalam semua metrik utama.
 
-![Gambar 10. Confusion Matrix XGBoost](image-9.png)
+![Gambar 10. Confusion Matrix XGBoost](https://github.com/Alqurtubi17/mlt-klasifikasi/blob/master/image-9.png?raw=true)
 
 Berdasarkan confusion matrix dari model XGBoost, dilakukan perhitungan metrik evaluasi menggunakan rumus-rumus standar untuk klasifikasi biner. Akurasi dihitung sebagai proporsi prediksi benar terhadap seluruh prediksi, yaitu:
 $$
@@ -407,11 +492,11 @@ $$
 Nilai ini mencerminkan keseimbangan performa model dalam mengenali penderita diabetes sekaligus menghindari kesalahan klasifikasi positif yang berlebihan. Secara keseluruhan, model menunjukkan performa yang sangat baik, meskipun sensitivitas terhadap kasus diabetes masih dapat ditingkatkan. Untuk memahami lebih lanjut bagaimana model membuat prediksi, dilakukan analisis terhadap pentingnya fitur dan kontribusinya terhadap output model.
 
 1. Feature Importance – XGBoost
-    ![Gambar 11. Feature Importance](image-10.png)
+    ![Gambar 11. Feature Importance](https://github.com/Alqurtubi17/mlt-klasifikasi/blob/master/image-10.png?raw=true)
     Hasil feature importance dari model XGBoost menunjukkan bahwa HbA1c level merupakan prediktor paling dominan dengan skor penting sekitar 0,53, diikuti oleh blood glucose level sebesar 0,32. Kedua variabel ini merupakan indikator klinis utama dalam diagnosis diabetes, sehingga konsistensi ini memperkuat validitas model. Fitur-fitur lain seperti age, hypertension, dan heart_disease menunjukkan kontribusi yang jauh lebih kecil (masing-masing <0,05), menandakan bahwa meskipun relevan secara klinis, pengaruhnya dalam model prediktif lebih rendah. BMI, gender, dan smoking_history memiliki nilai penting yang sangat rendah (<0,03), menunjukkan peran minimal dalam klasifikasi oleh model ini. Namun, analisis ini hanya menggambarkan pengaruh secara agregat; untuk mengevaluasi kontribusi fitur pada tingkat individual, digunakan pendekatan berbasis SHAP.
 
 2. SHAP Summary Plot
-    ![Gambar 12. SHAP Summary](image-11.png)
+    ![Gambar 12. SHAP Summary](https://github.com/Alqurtubi17/mlt-klasifikasi/blob/master/image-11.png?raw=true)
     Visualisasi nilai SHAP (SHapley Additive exPlanations) memperlihatkan dampak setiap fitur terhadap output prediksi baik secara individual maupun global. HbA1c level dan blood glucose level tidak hanya dominan dalam feature importance, tetapi juga memiliki SHAP value yang tinggi dan terdistribusi luas, baik ke arah positif maupun negatif, menunjukkan bahwa nilai tinggi dari kedua fitur ini secara konsisten mendorong prediksi ke arah diabetes. Fitur age dan BMI juga berkontribusi secara signifikan, dengan nilai tinggi yang meningkatkan probabilitas klasifikasi positif terhadap diabetes, meskipun dengan magnitudo yang lebih rendah dibanding HbA1c. Sementara itu, fitur seperti gender, heart_disease, hypertension, dan smoking_history menunjukkan distribusi SHAP yang lebih sempit dan kecil, mencerminkan dampak yang terbatas terhadap keputusan model. Analisis SHAP ini memperkuat hasil feature importance sebelumnya dan memberikan wawasan lebih dalam mengenai interpretabilitas model secara lokal dan global.
 
 ### Kesimpulan
